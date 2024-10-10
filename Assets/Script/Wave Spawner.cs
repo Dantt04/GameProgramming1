@@ -32,7 +32,7 @@ public class WaveSpawner : MonoBehaviour
 
     Vector3 randomPosition()
     {
-        Vector3 randPos = ((Vector3)Random.insideUnitCircle * spawnRadius )+ transform.position;
+        Vector3 randPos = ((Vector3)Random.insideUnitSphere * spawnRadius )+ transform.position;
         randPos.y = transform.position.y;
         return randPos;
     }

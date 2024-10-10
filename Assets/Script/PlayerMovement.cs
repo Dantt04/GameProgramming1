@@ -23,8 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.AddRelativeForce(movementValue.x,0,movementValue.y);
-
-        rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
+        rb.AddRelativeTorque(0, lookValue*Time.deltaTime, 0);
     }
 
     public void OnMove(InputValue value )
