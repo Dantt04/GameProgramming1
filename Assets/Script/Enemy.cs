@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody rb;
     private Vector3 velocity;
     public float moveSpeed;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +17,18 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-
+    void Update()
+    {
+        Vector3 dir = player.transform.position - transform.position;
+        dir.y = 0;
+        transform.rotation = Quaternion.LookRotation(dir.normalized);
+    }
+    
+    
     void FixedUpdate()
     {
         rb.velocity = velocity;
+
     }
     void OnDestroy()
     {
