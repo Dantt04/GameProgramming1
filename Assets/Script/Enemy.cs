@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             velocity = new Vector3(Random.Range(-1f, 1f) , 0, Random.Range(-1f, 1f) ).normalized* moveSpeed;
-            Debug.Log(velocity);
             yield return new WaitForSeconds(Random.Range(1f,3f));
         }
         
