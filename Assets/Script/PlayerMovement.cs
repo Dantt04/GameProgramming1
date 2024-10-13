@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private float lookValue;
 
     private Rigidbody rb;
-
     private void Awake()
     {
         Cursor.visible = false;

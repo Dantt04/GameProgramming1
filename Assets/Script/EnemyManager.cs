@@ -24,7 +24,6 @@ public class EnemyManager : MonoBehaviour
     {
         enemies.Add(enemy);
         onChanged.Invoke();
-
     }
 
     public void RemoveEnemy(Enemy enemy)

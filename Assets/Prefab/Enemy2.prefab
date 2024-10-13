@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3616841787487174403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6689510387030326490}
+  m_Layer: 7
+  m_Name: ShotPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6689510387030326490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616841787487174403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.481, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1955500023190074131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2065443125886604536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,7 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34f30712d30697648b80843f9e09934c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6689510387030326490}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 34f30712d30697648b80843f9e09934c,
         type: 3}
@@ -172,7 +207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  player: {fileID: 0}
+  EnemyBullet: {fileID: 6057222546284671726, guid: 0c36bd0a083040746aff8e5458bc7243,
+    type: 3}
+  ShotPoint: {fileID: 6689510387030326490}
 --- !u!114 &1477520999603808465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4855157090052f94aa4fd648c7d9d23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: 1
 --- !u!114 &2526830681089885269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,3 +289,9 @@ CapsuleCollider:
   m_Height: 0.68183535
   m_Direction: 1
   m_Center: {x: -0.0009384155, y: 0.34339508, z: 0}
+--- !u!4 &1955500023190074131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34f30712d30697648b80843f9e09934c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2065443125886604536}
+  m_PrefabAsset: {fileID: 0}

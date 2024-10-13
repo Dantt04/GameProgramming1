@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,13 +8,19 @@ public class Enemy : MonoBehaviour
     private Rigidbody rb;
     private Vector3 velocity;
     public float moveSpeed;
-    public GameObject player;
+    private GameObject player;
+
+    public GameObject EnemyBullet;
+    public Transform ShotPoint;
+    
     // Start is called before the first frame update
     void Start()
     {
         EnemyManager.instance.enemies.Add(this);
         rb = GetComponent<Rigidbody>();
         StartCoroutine(RandDirection());
+        StartCoroutine(Attack());
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -32,7 +39,16 @@ public class Enemy : MonoBehaviour
     }
     void OnDestroy()
     {
-        EnemyManager.instance.enemies.Remove(this);
+        EnemyManager.instance.RemoveEnemy(this);
+    }
+
+    IEnumerator Attack()
+    {
+        while (true)
+        {
+            Instantiate(EnemyBullet, ShotPoint.position, transform.rotation);
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     IEnumerator RandDirection()
@@ -42,7 +58,5 @@ public class Enemy : MonoBehaviour
             velocity = new Vector3(Random.Range(-1f, 1f) , 0, Random.Range(-1f, 1f) ).normalized* moveSpeed;
             yield return new WaitForSeconds(Random.Range(1f,3f));
         }
-        
     }
-    
 }

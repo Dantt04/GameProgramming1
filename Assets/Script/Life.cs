@@ -16,4 +16,9 @@ public class Life : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Heal(int amount)
+    {
+        this.amount += amount;
+    }
 }

@@ -5,9 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Assignment1.unity
+    guid: e374f4433cfd2b6408d63388e7930713
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: 8bb3dd1f8da99b442b04c43ca06aa4cb
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 428e745e3d96c7642b769f07100ed211
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6c3f05eb749b63c479c9f92f32a4ae9a,
       type: 2}
