@@ -210,6 +210,8 @@ MonoBehaviour:
   EnemyBullet: {fileID: 6057222546284671726, guid: 0c36bd0a083040746aff8e5458bc7243,
     type: 3}
   ShotPoint: {fileID: 6689510387030326490}
+  defaultMaterial: {fileID: 2100000, guid: 799c1f5f4b043314dbf33b6c07e365f7, type: 2}
+  StunMaterial: {fileID: 2100000, guid: 08d59c968c10f99429eb359eecc6b785, type: 2}
 --- !u!114 &1477520999603808465
 MonoBehaviour:
   m_ObjectHideFlags: 0
