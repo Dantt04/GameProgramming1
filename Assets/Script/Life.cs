@@ -7,7 +7,7 @@ public class Life : MonoBehaviour
 {
     public float amount;
     public UnityEvent onDeath;
-
+    
     void Update()
     {
         if(amount<=0)

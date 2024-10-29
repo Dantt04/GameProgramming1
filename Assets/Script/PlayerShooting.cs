@@ -23,12 +23,15 @@ public class PlayerShooting : MonoBehaviour
     private ContactDamager cd;
     private bool powerFlag =true;
     private Rigidbody rb;
+
+    private ParticleSystem ps;
     // Start is called before the first frame update
     
     void Awake()
     {
         cd = Bullet.GetComponent<ContactDamager>();
         rb = GetComponent<Rigidbody>();
+        ps = GetComponent<ParticleSystem>();
         bulletMaterial.color = defaultBullet;
     }
 
@@ -58,12 +61,23 @@ public class PlayerShooting : MonoBehaviour
     public void OnSkill(InputValue value)
     {
         detectEnemys = Physics.OverlapSphere(transform.position, detectRadius, LayerMask.GetMask("Enemy"));
+        ps.Play();
         foreach (var enemy in detectEnemys)
         {
             float tempDot = Vector3.Dot(rb.transform.forward,-enemy.GameObject().GetComponent<Enemy>().Lookdir  );
             float tempAngle = Mathf.Acos(tempDot) * Mathf.Rad2Deg;
-            if( tempAngle<detectAngle/2 )
-                enemy.gameObject.GetComponent<Enemy>().Stop();
+            if (tempAngle < detectAngle / 2)
+            {
+                Enemy EnemyComp = enemy.gameObject.GetComponent<Enemy>();
+                if (EnemyComp.state != Enemy.EnemyState.Stun)
+                {
+                    Enemy.EnemyState temp = EnemyComp.state;
+                    EnemyComp.state=Enemy.EnemyState.Stun;
+                    EnemyComp.canChangestate = false;
+                    EnemyComp.StartCoroutine(EnemyComp.StunBack(temp,3f));
+                }
+            }
+                
         }
     }
     

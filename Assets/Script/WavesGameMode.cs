@@ -22,7 +22,7 @@ public class WavesGameMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textMesh.text = "HP : " + playerLife.amount.ToString();
+        textMesh.text = "HP : " + playerLife.amount.ToString()+"\nBase HP : "+playerBaseLife.amount.ToString();
     }
 
     void OnPlayerOrBaseDied()
