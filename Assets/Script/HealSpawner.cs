@@ -19,7 +19,7 @@ public class HealSpawner : MonoBehaviour
         while (true)
         {
             Instantiate(healPrefab,randomPosition(),transform.rotation);
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(15f);
         }
     }
 

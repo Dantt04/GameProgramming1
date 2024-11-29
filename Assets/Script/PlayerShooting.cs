@@ -25,6 +25,8 @@ public class PlayerShooting : MonoBehaviour
     private Rigidbody rb;
 
     private ParticleSystem ps;
+    private PlayerMovement pm;
+    public bool stopFlag = false;
     // Start is called before the first frame update
     
     void Awake()
@@ -32,15 +34,16 @@ public class PlayerShooting : MonoBehaviour
         cd = Bullet.GetComponent<ContactDamager>();
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
+        pm = GetComponent<PlayerMovement>();
         bulletMaterial.color = defaultBullet;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0)&&!stopFlag)
         {
-           
+            pm.audio[0].PlayOneShot(pm.bulletSound);
             GameObject clone = Instantiate(prefab);
             clone.transform.position = playerShooting.transform.position;
             clone.transform.rotation = playerShooting.transform.rotation;
@@ -49,8 +52,9 @@ public class PlayerShooting : MonoBehaviour
 
     public void OnPowerUp(InputValue value)
     {
-        if(value.isPressed == true && powerFlag)
+        if(value.isPressed && powerFlag)
         {
+            pm.audio[0].PlayOneShot(pm.powerupSound);
             bulletMaterial.color = powerBullet;
             cd.damage = cd.damage * 2;
             Invoke("bulletBack", 3f);
@@ -62,6 +66,7 @@ public class PlayerShooting : MonoBehaviour
     {
         detectEnemys = Physics.OverlapSphere(transform.position, detectRadius, LayerMask.GetMask("Enemy"));
         ps.Play();
+        pm.audio[0].PlayOneShot(pm.skillSound);
         foreach (var enemy in detectEnemys)
         {
             float tempDot = Vector3.Dot(rb.transform.forward,-enemy.GameObject().GetComponent<Enemy>().Lookdir  );
@@ -88,7 +93,7 @@ public class PlayerShooting : MonoBehaviour
         bulletMaterial.color = defaultBullet;
         cd.damage = cd.damage / 2;
         powerFlag = true;
-        Debug.Log("1");
+        
     }
 
     void OnDrawGizmos()

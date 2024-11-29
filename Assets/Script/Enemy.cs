@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            if(state==EnemyState.AttackPlayer)
+            if(state==EnemyState.AttackPlayer&&Time.time!=0)
                 Instantiate(EnemyBullet, ShotPoint.position, transform.rotation);
             yield return new WaitForSeconds(1.5f);
         }
@@ -144,6 +144,7 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             baseLife.amount -= 10;
+            
             yield return new WaitForSeconds(3f);
         }
     }

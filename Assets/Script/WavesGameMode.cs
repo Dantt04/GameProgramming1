@@ -39,7 +39,7 @@ public class WavesGameMode : MonoBehaviour
 
     void CheckWinCondition()
     {
-        if(ScoreManager.instance.amount>30)
+        if(ScoreManager.instance.amount>=30)
         {
             SceneManager.LoadScene("WinScreen");
             
