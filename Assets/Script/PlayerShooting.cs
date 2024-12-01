@@ -27,6 +27,7 @@ public class PlayerShooting : MonoBehaviour
     private ParticleSystem ps;
     private PlayerMovement pm;
     public bool stopFlag = false;
+    private Animator animator;
     // Start is called before the first frame update
     
     void Awake()
@@ -35,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
         pm = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();
         bulletMaterial.color = defaultBullet;
     }
 
@@ -43,12 +45,14 @@ public class PlayerShooting : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse0)&&!stopFlag)
         {
+            animator.SetBool("isAttack", true);
             pm.audio[0].PlayOneShot(pm.bulletSound);
             GameObject clone = Instantiate(prefab);
             clone.transform.position = playerShooting.transform.position;
             clone.transform.rotation = playerShooting.transform.rotation;
         }
     }
+
 
     public void OnPowerUp(InputValue value)
     {

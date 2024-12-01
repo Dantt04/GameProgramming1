@@ -34,11 +34,13 @@ public class Enemy : MonoBehaviour
     {
         BaseAttack,GotoBase,Stun,AttackPlayer,ChasePlayer
     }
+
     private Life life;
-    public EnemyState state = EnemyState.BaseAttack;
+    public EnemyState state = EnemyState.GotoBase;
     public bool canChangestate = true;
     private Life baseLife;
     private ParticleSystem ps;
+    private Animator animator;
     void Start()
     {
         EnemyManager.instance.enemies.Add(this);
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
         baseLife = Base.GetComponent<Life>();
         ps = gameObject.GetComponent<ParticleSystem>();
         life = gameObject.GetComponent<Life>();
+        animator = GetComponent<Animator>();
         life.onDeath.AddListener(()=>Instantiate(particle, transform.position, Quaternion.identity));
     }
 
@@ -66,19 +69,24 @@ public class Enemy : MonoBehaviour
             {
                 state = EnemyState.BaseAttack;
                 StartCoroutine(AttackBase());
-                canChangestate=false;
+                
+                canChangestate =false;
             }
             else if ( playerDistance> detectPlayerRadius)
             {
                 state = EnemyState.GotoBase;
+                
+
             }
             else if (playerDistance > attackPlayerRadius)
             {
                 state = EnemyState.ChasePlayer;
+                
             }
             else
             {
                 state = EnemyState.AttackPlayer;
+                
                 if (!isAttack)
                 {
                     StartCoroutine(Attack());
@@ -94,6 +102,7 @@ public class Enemy : MonoBehaviour
             case EnemyState.BaseAttack:
                 Lookdir = Base.transform.position - transform.position;
                 rb.velocity = Vector3.zero;
+                animator.SetBool("AttackB", true);
                 break;
             
             case EnemyState.Stun:
@@ -105,11 +114,13 @@ public class Enemy : MonoBehaviour
                 Lookdir.y = 0;
                 Lookdir.Normalize();
                 rb.velocity = Lookdir * moveSpeed;
+                animator.SetBool("DetectP", false);
                 break;
             
             case EnemyState.AttackPlayer:
                 Lookdir = player.transform.position - transform.position;
                 rb.velocity = Vector3.zero;
+                animator.SetBool("AttackP", true);
                 break;
             
             case EnemyState.ChasePlayer:
@@ -117,6 +128,8 @@ public class Enemy : MonoBehaviour
                 Lookdir.y = 0;
                 Lookdir.Normalize();
                 rb.velocity = Lookdir * moveSpeed;
+                animator.SetBool("AttackP", false);
+                animator.SetBool("DetectP", true);
                 break;
         }
         

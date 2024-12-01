@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 1f;
     public float rotationSpeed = 1f;
-    private Vector2 movementValue;
+    private Vector3 movementValue;
     private float lookValue;
+    private float lv;
     public GameObject Menu;
     public GameObject MainMenu;
     public TextMeshProUGUI FPS;
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip skillSound;
     public AudioClip healSound;
     public AudioClip powerupSound;
+
+    private Animator animator;
     private void Awake()
     {
         Cursor.visible = true;
@@ -34,23 +37,33 @@ public class PlayerMovement : MonoBehaviour
         ps = GetComponent<PlayerShooting>();
         rb = GetComponent<Rigidbody>();
         audio = gameObject.GetComponents<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        rb.AddRelativeForce(movementValue.x,0,movementValue.y);
+        rb.AddRelativeForce(movementValue.x * Time.deltaTime, 0,movementValue.y * Time.deltaTime);
         rb.AddRelativeTorque(0, lookValue*Time.deltaTime, 0);
-        
+        if (rb.velocity.magnitude > 0.01)
+        {
+            animator.SetBool("isWalk", true);
+        }
+        else
+        {
+            animator.SetBool("isWalk", false);
+        }
     }
 
     public void OnMove(InputValue value )
     {
-        movementValue = value.Get<Vector2>()*speed*Time.deltaTime*144;
+        movementValue = value.Get<Vector2>()*speed;
+        
     }
 
     public void OnLook(InputValue value)
     {
-        lookValue = value.Get<Vector2>().x*rotationSpeed*Time.deltaTime*144;
+        lookValue = value.Get<Vector2>().x*rotationSpeed;
+        
     }
 
     public void OnMenu(InputValue value)

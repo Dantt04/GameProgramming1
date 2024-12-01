@@ -5523,6 +5523,11 @@ PrefabInstance:
       propertyPath: detectRadius
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3192509661156716400, guid: 2645de3dcf2cdea42932a180f8ea13ba,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2bd77caf41bb453429d4e10dd5f31e57, type: 2}
     - target: {fileID: 4053204614826110587, guid: 2645de3dcf2cdea42932a180f8ea13ba,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -5538,6 +5543,11 @@ PrefabInstance:
       propertyPath: Menu
       value: 
       objectReference: {fileID: 1249947045}
+    - target: {fileID: 4607011617546088621, guid: 2645de3dcf2cdea42932a180f8ea13ba,
+        type: 3}
+      propertyPath: speed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4607011617546088621, guid: 2645de3dcf2cdea42932a180f8ea13ba,
         type: 3}
       propertyPath: MainMenu
@@ -5563,6 +5573,11 @@ PrefabInstance:
       propertyPath: powerupSound
       value: 
       objectReference: {fileID: 8300000, guid: e746f06c987a8f246b7f8bdb4255897a, type: 3}
+    - target: {fileID: 4607011617546088621, guid: 2645de3dcf2cdea42932a180f8ea13ba,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7066309752984844612, guid: 2645de3dcf2cdea42932a180f8ea13ba,
         type: 3}
       propertyPath: amount
@@ -5571,7 +5586,7 @@ PrefabInstance:
     - target: {fileID: 7443664667766386727, guid: 2645de3dcf2cdea42932a180f8ea13ba,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8207228573349719984, guid: 2645de3dcf2cdea42932a180f8ea13ba,
         type: 3}
